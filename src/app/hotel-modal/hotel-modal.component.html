@@ -1,0 +1,27 @@
+<div class="hotel-modal">
+  <div class="hotel-cover-photo" [ngStyle]="{'background-image': 'url(' + hotelData.cover_photo.url + ')'}"></div>
+  <div class="hotel-header">
+    <div class="hotel-main-content">
+      <div class="hotel-name">{{hotelData.name}}</div>
+      <div class="hotel-city">{{hotelData.city.name}}</div>
+      <div class="hotel-amenities">
+        <div class="amenity-label" *ngIf="hotelData.amenities.private_bath">
+          <i class="fas fa-check check-icon"></i> private bath
+        </div>
+        <div class="amenity-label" *ngIf="hotelData.amenities.shared_kitchen">
+          <i class="fas fa-check check-icon"></i> shared kitchen
+        </div>
+      </div>
+    </div>
+    <div class="hotel-rate">
+      <i class="fas fa-dollar-sign usd-icon"></i>
+      <span>{{hotelData.rate | number}}</span>
+    </div>
+  </div>
+  <div class="room-list-title">Hotel Rooms:</div>
+  <ul class="room-list">
+    <li class="room-item" *ngFor="let room of hotelData.rooms">
+      <div class="room-name">- {{room.name}}</div>
+    </li>
+  </ul>
+</div>

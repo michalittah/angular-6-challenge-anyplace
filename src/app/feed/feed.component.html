@@ -1,0 +1,42 @@
+<div class="hotels">
+  <div class="hotels-filter-container">
+    <div class="hotels-filter">
+      <input class="filter-input" type="text" [(ngModel)]="hotelFilter.city.name" placeholder="City name">
+      <input class="filter-input" type="text" [(ngModel)]="hotelFilter.name" placeholder="Hotel name">
+      <div class="checkbox-container">
+        <input id="shared-kitchen" type="checkbox" [checked]="hotelFilter.amenities.shared_kitchen"
+               (change)="toggleAmenitie('shared_kitchen')">
+        <label for="shared-kitchen">shared kitchen</label>
+      </div>
+      <div class="checkbox-container">
+        <input id="private-bath"
+               type="checkbox" [checked]="hotelFilter.amenities.private_bath" (change)="toggleAmenitie('private_bath')">
+        <label for="private-bath">private bath</label>
+      </div>
+    </div>
+  </div>
+  <div class="sort-btn-wrapper">
+    <button class="btn btn-default" (click)="sortByRate()">Sort by Rate</button>
+  </div>
+  <ul class="hotels-list" *ngIf="hotels">
+    <li class="hotels-item" *ngFor="let hotel of hotels | filterBy: hotelFilter" (click)="openHotelModal(hotel)">
+      <div class="hotel-cover-photo" [ngStyle]="{'background-image': 'url(' + hotel.cover_photo.url + ')'}"></div>
+      <div class="hotel-item-content">
+        <div class="hotel-name"> {{hotel.name}}</div>
+        <div class="hotel-city"><i class="fas fa-map-marker-alt map-icon"></i>{{hotel.city.name}}</div>
+        <div class="hotel-amenities">
+          <div class="amenity-label" *ngIf="hotel.amenities.private_bath">
+            <i class="fas fa-check check-icon"></i> private bath
+          </div>
+          <div class="amenity-label" *ngIf="hotel.amenities.shared_kitchen">
+            <i class="fas fa-check check-icon"></i> shared kitchen
+          </div>
+        </div>
+
+      </div>
+      <div class="hotel-rate"><i class="fas fa-dollar-sign usd-icon"></i>
+        <span>{{hotel.rate | number}}</span>
+      </div>
+    </li>
+  </ul>
+</div>
