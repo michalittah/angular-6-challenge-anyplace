@@ -1,6 +1,6 @@
 
 
-# Angular 6 hotels feed
+#Anyplace - Angular 6 Challenge
 
 
 ### Quick start
